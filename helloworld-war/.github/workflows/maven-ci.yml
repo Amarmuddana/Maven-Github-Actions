@@ -1,7 +1,16 @@
 name: Maven Build and Test
 
-on: [push, pull_request]
-
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:   # <- This enables the "Run workflow" button
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -29,3 +38,10 @@ jobs:
 
       - name: Run tests
         run: mvn test
+        
+      - name: Upload WAR
+        uses: actions/upload-artifact@v3
+        with:
+          name: helloworld-war
+          path: target/*.war
+
