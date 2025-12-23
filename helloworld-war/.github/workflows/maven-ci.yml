@@ -9,8 +9,8 @@ on:
     branches:
       - main
       - master
-  workflow_dispatch:   # <- This enables the "Run workflow" button
-  
+  workflow_dispatch:   # Enables "Run workflow" button
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -38,10 +38,9 @@ jobs:
 
       - name: Run tests
         run: mvn test
-        
-      - name: Upload WAR
+
+      - name: Upload WAR artifact
         uses: actions/upload-artifact@v3
         with:
           name: helloworld-war
           path: target/*.war
-
